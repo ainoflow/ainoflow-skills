@@ -1,0 +1,26 @@
+# Secrets and local env — never commit API keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+credentials.json
+secrets/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.idea/
+.vscode/
+*.log
+
+# Dependencies and build artifacts (if you add samples later)
+node_modules/
+dist/
+build/
+.venv/
+__pycache__/
+*.pyc
