@@ -93,6 +93,8 @@ If two lanes fit, prefer `billing` over `sales` over `support`, and set `"needsH
 
 Handoff token: Storage key `{lane}/{yyyy-mm-dd}/{message-id}` in category `inbox-triage`. Specialists do not need the Inbox hook if the record plus Files copies are complete.
 
+Copy-paste try-it prompt: [prompts/inbox-triage-to-storage.md](../../prompts/inbox-triage-to-storage.md).
+
 ## Failures (public codes)
 
 - Inbox tools on this surface declare `NOT_FOUND` for unknown ids. Monthly receive limits are reported by `inbox_guide` (`inboxMessagesMonthly`) but are charged at ingest — tools here do not return `RATE_LIMITED`.

@@ -125,4 +125,6 @@ Both agents must use the **same API key** (same scope/project) and the **same ca
 - Files: `CONFLICT` if `files_upload` reuses a taken `key`; `ITEM_TOO_LARGE` if decoded bytes exceed the guide limit.
 - Storage / Memory: `ITEM_TOO_LARGE`, `SCHEMA_VALIDATION_FAILED`, `CONFLICT`, `PRECONDITION_FAILED`, `NOT_FOUND`, `RATE_LIMITED`. Pass `ifMatch` / `expectedVersion` on upserts when two agents might write the same key.
 
-Do not invent extra Inbox or Files tools. Published Inbox MCP tools used here: `inbox_messages`, `inbox_handle_message`, `inbox_attachment_url`, `inbox_unhandle_message`, `inbox_guide`.
+Do not invent extra Inbox or Files tools. Published Inbox MCP tools: `inbox_guide`, `inbox_messages`, `inbox_attachment_url`, `inbox_handle_message`, `inbox_unhandle_message`, `inbox_delete_message`. This skill uses handle / unhandle / attachment URL — not `inbox_delete_message` on a successful queue.
+
+Copy-paste try-it prompt: [prompts/invoice-intake.md](../../prompts/invoice-intake.md).

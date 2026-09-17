@@ -96,6 +96,8 @@ Do not store the full draft only in chat. If the draft must survive a new conver
 
 Handoff token: Storage key `sessions/{brief-slug}` in category `research`, plus Memory key `briefs/{brief-slug}`. The writer does not need a transcript from the researcher — search and wiki-links are the index.
 
+Copy-paste try-it prompt (smoke keys under `research`): [prompts/research-notes-memory.md](../../prompts/research-notes-memory.md).
+
 ## Failures (public codes)
 
 - `ITEM_TOO_LARGE` if a note exceeds the Memory size in force (default 100 KB). Split the page instead of stuffing a source dump.

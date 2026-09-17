@@ -105,6 +105,8 @@ Files live under category `vendors`, prefix `acme-supplies/`.
 
 Handoff token: Storage key `onboarding/{vendor-slug}` in category `vendors`. Files keys are listed on that JSON. Memory is how a later agent finds the vendor by name when nobody pasted the Storage key.
 
+Copy-paste try-it prompt: [prompts/vendor-onboarding-files.md](../../prompts/vendor-onboarding-files.md).
+
 ## Failures (public codes)
 
 - Files: `CONFLICT` on a taken upload key; `ITEM_TOO_LARGE` over the decoded size limit; `SCHEMA_VALIDATION_FAILED` for illegal key segments (empty, `.`, `..`, trailing `/`).

@@ -127,6 +127,21 @@ Cursor discovers skills from (see [Cursor Agent Skills](https://cursor.com/docs/
 
 Do not nest an extra directory from a zip extract. `SKILL.md` must sit immediately inside the skill folder, and the frontmatter `name` must match that folder name.
 
+## Try it (5 minutes)
+
+Prove the handoff with **one** skill and the four public MCP servers. No Inbox hook is required.
+
+1. **Connect the four MCP servers** from [Connect MCP](#connect-mcp) (Memory, Storage, Files, Inbox) with `YOUR_API_KEY`. Reload MCP so the `*_guide` tools appear.
+2. **Install one skill:** copy [`skills/research-notes-memory/SKILL.md`](skills/research-notes-memory/SKILL.md) to `.cursor/skills/research-notes-memory/SKILL.md` (or `~/.cursor/skills/research-notes-memory/SKILL.md`).
+3. **Run the sample prompt:** paste [`prompts/research-notes-memory.md`](prompts/research-notes-memory.md) into an agent chat that has those MCP servers. Type `/research-notes-memory` if your host lists skills that way.
+4. **Success looks like** these addresses existing under the **same** API key:
+   - Memory category `research`, keys `briefs/smoke-q3-pricing`, `notes/smoke-q3-pricing/packaging`, `outlines/smoke-q3-pricing`
+   - Storage category `research`, key `sessions/smoke-q3-pricing` with `"status": "ready_for_draft"` and `"readyForDraft": true`
+
+Confirm with `memory_read` on the brief, `memory_search` (`q`: `pricing packaging`, `prefix`: `notes/smoke-q3-pricing/`), and `storage_json_get` on the session. Then delete only those smoke keys (see [TESTING.md](TESTING.md#cleanup)).
+
+Copy-paste prompts for every skill live in [`prompts/`](prompts/). Full smoke A/B/C steps, pass/fail, and cleanup: [TESTING.md](TESTING.md).
+
 ## Skill catalog
 
 | Skill | Folder | When to use | Surfaces |
@@ -142,12 +157,13 @@ Do not nest an extra directory from a zip extract. `SKILL.md` must sit immediate
 - [Ainoflow docs](https://www.ainoflow.io/docs)
 - [MCP overview](https://www.ainoflow.io/docs/mcp)
 - [Memory](https://www.ainoflow.io/docs/mcp/memory) · [Storage](https://www.ainoflow.io/docs/mcp/storage) · [Files](https://www.ainoflow.io/docs/mcp/files) · [Inbox](https://www.ainoflow.io/docs/mcp/inbox)
+- This repo: [TESTING.md](TESTING.md) · [`prompts/`](prompts/)
 
 Published defaults (confirm with each `*_guide` for your key): Memory documents up to 100 KB; Storage JSON up to 10 MB; Files decoded size is reported as `filesFileSizeBytes` (docs illustrate a 100 MB default). Inbox tools list and handle mail; they do not create inboxes.
 
 ## Security
 
-- Never commit API keys, `.env` files, or real inbox hook addresses.
+- Never commit API keys, `.env` files, or real inbox hook addresses. Copy [`.env.example`](.env.example) locally (`AINOFLOW_API_KEY=YOUR_API_KEY`).
 - Use the `YOUR_API_KEY` placeholder in any snippet you paste into this repo or a ticket.
 - Treat Memory, Storage, Files, and Inbox as shared project data. Anyone with the same key can read what these skills write.
 - Prefer agreed namespaces over dumping everything into the Memory default category `main`.

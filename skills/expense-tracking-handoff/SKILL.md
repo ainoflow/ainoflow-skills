@@ -100,7 +100,7 @@ Total EUR 612.40. Receipts live under Files `expenses` / `receipts/2026-09/alex-
    - Changes: `{"status":"changes_requested","reviewNote":"Need itemized hotel folio"}`
 6. `memory_edit` the summary (`operation`: `append` or `str_replace`) and keep frontmatter `status` in sync via a full `memory_write` if you need `memory_search` filters to change. Frontmatter is parsed at write time.
 
-Optional TTL: if the report is a draft, `storage_json_upsert` may set `expiresMs` or `expiresAt` (mutually exclusive; expiry must be in the future). Do not expire a submitted report that finance still needs.
+Optional TTL: if the report is a draft, `storage_json_upsert` may set `expiresMs` or `expiresAt` (mutually exclusive; expiry must be in the future). Do not expire a submitted report that finance still needs. `storage_json_patch` takes the same `ifMatch` / `expectedVersion` preconditions as upsert and still takes **no** TTL — use upsert when you need to set expiry. A conditional patch does not create; an unconditional patch against an empty key does.
 
 ## Multi-agent handoff
 
@@ -111,8 +111,10 @@ Optional TTL: if the report is a draft, `storage_json_upsert` may set `expiresMs
 
 Handoff token: Storage key `reports/{yyyy-mm}/{employee-slug}/{report-id}` in category `expenses`. Same API key, same categories. The employee does not email receipts to finance — finance pulls Files from the pointers on the JSON.
 
+Copy-paste try-it prompt: [prompts/expense-tracking-handoff.md](../../prompts/expense-tracking-handoff.md).
+
 ## Failures (public codes)
 
 - Files `CONFLICT` on a reused upload key — treat as “receipt already stored” and keep going if metadata matches.
 - Storage / Memory: `ITEM_TOO_LARGE`, `NOT_FOUND`, `PRECONDITION_FAILED` (stale `ifMatch`), `RATE_LIMITED` when the scope is full of documents (free a key with `storage_json_delete` / `memory_delete`; waiting does not reset the stored-document allowance).
-- `storage_json_patch` has **no** ETag/TTL. Use `storage_json_upsert` with `ifMatch` when two reviewers might collide.
+- `storage_json_patch` takes `ifMatch` / `expectedVersion` (same as upsert) and still takes no TTL. A stale precondition is `PRECONDITION_FAILED`; a lost race is `CONFLICT` — re-read and re-apply. Use upsert when you need to set expiry.
