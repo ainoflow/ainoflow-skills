@@ -19,7 +19,7 @@ Researcher:
 
 1. `memory_write` category `research`, key `briefs/smoke-q3-pricing` — a short brief on Q3 packaging for a writer, with a `[[outlines/smoke-q3-pricing]]` wiki-link and frontmatter `status: active`.
 2. `storage_json_upsert` category `research`, key `sessions/smoke-q3-pricing` with JSON (string `data`): `status` researching, `briefKey` `briefs/smoke-q3-pricing`, `outlineKey` `outlines/smoke-q3-pricing`, `readyForDraft` false, `handoffTo` writer.
-3. `memory_search` category `research`, `q` "pricing packaging", `prefix` `notes/smoke-q3-pricing/`. Then `memory_write` `notes/smoke-q3-pricing/packaging` linking `[[briefs/smoke-q3-pricing]]`.
+3. `memory_search` category `research`, `q` `packaging`, `prefix` `notes/smoke-q3-pricing/` (`q` matches title/prose, not tags alone). Then `memory_write` `notes/smoke-q3-pricing/packaging` linking `[[briefs/smoke-q3-pricing]]` and putting the words **pricing packaging** in the body.
 4. `memory_write` `outlines/smoke-q3-pricing` listing that note.
 5. `storage_json_patch` the session to `status` `ready_for_draft`, `readyForDraft` true, `updatedNoteKeys` including `notes/smoke-q3-pricing/packaging`.
 

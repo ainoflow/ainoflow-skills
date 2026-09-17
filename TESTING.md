@@ -58,7 +58,7 @@ data: {"status":"researching","briefKey":"briefs/smoke-q3-pricing","updatedNoteK
 
 ### A2. Researcher — note + outline + ready
 
-5. `memory_search` — `category`: `research`, `q`: `pricing packaging`, `prefix`: `notes/smoke-q3-pricing/` (expect zero hits the first time).
+5. `memory_search` — `category`: `research`, `q`: `packaging`, `prefix`: `notes/smoke-q3-pricing/` (expect zero hits the first time). `q` matches title and prose, not frontmatter tags alone.
 6. `memory_write`
 
 ```text
@@ -75,7 +75,7 @@ tags:
 ---
 # Packaging note
 
-Tied to [[briefs/smoke-q3-pricing]]. Competitors bundle usage + support.
+Tied to [[briefs/smoke-q3-pricing]]. Smoke claim: pricing packaging — competitors bundle usage + support.
 ```
 
 7. `memory_write` `research` / `outlines/smoke-q3-pricing` listing `[[notes/smoke-q3-pricing/packaging]]`.
@@ -91,14 +91,14 @@ patch: {"status":"ready_for_draft","readyForDraft":true,"updatedNoteKeys":["note
 
 9. `storage_json_get` `research` / `sessions/smoke-q3-pricing` (or `storage_json_list_keys` with `prefix`: `sessions/`, `where`: `{ "readyForDraft": true }`).
 10. `memory_read` `research` / `briefs/smoke-q3-pricing` and `research` / `outlines/smoke-q3-pricing`.
-11. `memory_search` `category`: `research`, `q`: `pricing packaging`, `prefix`: `notes/smoke-q3-pricing/`, `sort`: `blended`. Then `memory_read` the hit key. Hits have **no** body.
+11. `memory_search` `category`: `research`, `q`: `packaging` (or `pricing packaging` once both words are in the note body), `prefix`: `notes/smoke-q3-pricing/`, `sort`: `blended`. Then `memory_read` the hit key. Hits have **no** body.
 12. Optional: `memory_context` `category`: `research`, `key`: `briefs/smoke-q3-pricing`, `depth`: `2`.
 
 ### A — pass
 
 - [ ] Guides returned without error.
 - [ ] `memory_read` of `briefs/smoke-q3-pricing` returns the brief markdown.
-- [ ] `memory_search` finds `notes/smoke-q3-pricing/packaging` (snippet/title, not the full body).
+- [ ] `memory_search` `q`: `packaging` (prefix `notes/smoke-q3-pricing/`) finds `notes/smoke-q3-pricing/packaging` (snippet/title, not the full body).
 - [ ] `storage_json_get` of `sessions/smoke-q3-pricing` shows `readyForDraft: true`.
 - [ ] Writer can draft from those keys without any chat transcript from the researcher.
 

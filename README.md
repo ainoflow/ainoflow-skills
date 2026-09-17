@@ -138,7 +138,7 @@ Prove the handoff with **one** skill and the four public MCP servers. No Inbox h
    - Memory category `research`, keys `briefs/smoke-q3-pricing`, `notes/smoke-q3-pricing/packaging`, `outlines/smoke-q3-pricing`
    - Storage category `research`, key `sessions/smoke-q3-pricing` with `"status": "ready_for_draft"` and `"readyForDraft": true`
 
-Confirm with `memory_read` on the brief, `memory_search` (`q`: `pricing packaging`, `prefix`: `notes/smoke-q3-pricing/`), and `storage_json_get` on the session. Then delete only those smoke keys (see [TESTING.md](TESTING.md#cleanup)).
+Confirm with `memory_read` on the brief, `memory_search` (`q`: `packaging`, `prefix`: `notes/smoke-q3-pricing/`), and `storage_json_get` on the session. Then delete only those smoke keys (see [TESTING.md](TESTING.md#cleanup)).
 
 Copy-paste prompts for every skill live in [`prompts/`](prompts/). Full smoke A/B/C steps, pass/fail, and cleanup: [TESTING.md](TESTING.md).
 
